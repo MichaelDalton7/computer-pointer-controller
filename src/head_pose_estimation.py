@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from openvino.inference_engine import IECore, IENetwork
+from openvino.inference_engine import IECore
 
 '''
 Class for the Head Pose Estimation Model.
@@ -13,13 +13,15 @@ class HeadPoseEstimation:
         '''
         self.core = IECore()
         self.model_name = model_name
-        self.model = IENetwork(self.model_name + '.xml', self.model_name + '.bin')
+        self.extensions = extensions
+        self.model_structure = self.model_name + '.xml'
+        self.model_weights = self.model_name + '.bin'
         self.device = device
         self.network = None
+        self.model = None
         self.input_name = None
         self.input_shape = None
         self.output_name = None
-        self.output_shape = None
 
     def load_model(self):
         '''
@@ -27,17 +29,26 @@ class HeadPoseEstimation:
         This method is for loading the model to the device specified by the user.
         If your model requires any Plugins, this is where you can load them.
         '''
-        self.network = core.load_network(network=self.model, device_name=self.device, num_requests=1)
+        self.model = self.core.read_network(model=self.model_structure, weights=self.model_weights)
+        # Load extensions if there are any
+        if not self.extensions == None:
+            self.core.add_extension(self.extensions, self.device)
+        # Load model
+        self.network = self.core.load_network(network=self.model, device_name=self.device, num_requests=1)
+        # Get Input shape
+        self.input_name = next(iter(self.model.inputs))
+        self.input_shape = self.model.inputs[self.input_name].shape
+        # Get Output name
+        self.output_name = next(iter(self.model.outputs))
 
     def predict(self, image):
         '''
-        TODO: You will need to complete this method.
+        You will need to complete this method.
         This method is meant for running predictions on the input image.
         '''
-        raise NotImplementedError
-
-    def check_model(self):
-        raise NotImplementedError
+        processed_image = self.preprocess_input(image.copy())
+        outputs = self.network.infer({ self.input_name : processed_image })
+        return self.preprocess_output(outputs)
 
     def preprocess_input(self, image):
         '''
@@ -52,4 +63,8 @@ class HeadPoseEstimation:
         Before feeding the output of this model to the next model,
         you might have to preprocess the output. This function is where you can do that.
         '''
-        raise NotImplementedError
+        return [
+            outputs['angle_y_fc'][0][0], 
+            outputs['angle_p_fc'][0][0], 
+            outputs['angle_r_fc'][0][0] 
+        ]

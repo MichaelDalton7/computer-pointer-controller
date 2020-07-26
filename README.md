@@ -25,3 +25,9 @@ If you have used Async Inference in your code, benchmark the results and explain
 
 ### Edge Cases
 There will be certain situations that will break your inference flow. For instance, lighting changes or multiple people in the frame. Explain some of the edge cases you encountered in your project and how you solved them to make your project more robust.
+
+Command used to run the application
+
+```
+python main.py -fm ./models/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001
+```

@@ -15,7 +15,7 @@ hpm_desc = '''The path to the head pose estimation model and it's weights file (
 prob_desc = '''The probability threshold to be used to separate inference results that are correct from the 
                ones that are incorrect. This should be a floating point value between 0 and 1. 
                The default value is 0.6'''
-ext_desc = '''A path to a CPU extension to be used by OpenVino'''
+ext_desc = '''A path to an extension to be used by OpenVino'''
 
 class ArgParser:
     def __init__(self):
@@ -39,7 +39,7 @@ class ArgParser:
         self.optional.add_argument("-i", "--input", required=False, type=str, help=i_desc)
         self.optional.add_argument("-d", "--device", required=False, type=str, default="CPU", help=d_desc)
         self.optional.add_argument("-prob", "--probability-threshold", required=False, type=float, default=0.6, help=prob_desc)
-        self.optional.add_argument("-ext", "--cpu-extension", required=False, type=str, default=None, help=ext_desc)
+        self.optional.add_argument("-ext", "--extensions", required=False, type=str, default=None, help=ext_desc)
     
     def get_args(self):
         '''
