@@ -1,4 +1,6 @@
 import cv2
+import logging as log
+import time
 import numpy as np
 from openvino.inference_engine import IECore
 
@@ -35,7 +37,11 @@ class FaceDetection:
         if not self.extensions == None:
             self.core.add_extension(self.extensions, self.device)
         # Load model
+        log.info("Loading Face Detection model...")
+        start_time = time.time()
         self.network = self.core.load_network(network=self.model, device_name=self.device, num_requests=1)
+        finish_time = time.time()
+        log.info("Face Detection model took {} seconds to load.".format(finish_time - start_time))
         # Get Input shape
         self.input_name = next(iter(self.model.inputs))
         self.input_shape = self.model.inputs[self.input_name].shape
@@ -80,11 +86,11 @@ class FaceDetection:
 
         # If no face detected return False values
         if (len(face_coordinates) == 0):
-            return [], False
+            return [], []
 
         image_height = image.shape[0]
         image_width = image.shape[1]
         face_coordinates = face_coordinates* np.array([image_width, image_height, image_width, image_height])
         face_coordinates = face_coordinates.astype(np.int32)
         
-        return image[face_coordinates[1]:face_coordinates[3], face_coordinates[0]:face_coordinates[2]], True
+        return image[face_coordinates[1]:face_coordinates[3], face_coordinates[0]:face_coordinates[2]], face_coordinates

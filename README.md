@@ -31,3 +31,7 @@ Command used to run the application
 ```
 python main.py -fm ./models/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001
 ```
+
+```
+python main.py -fm ./models/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001 --input ../bin/demo.mp4
+```

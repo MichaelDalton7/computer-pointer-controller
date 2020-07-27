@@ -1,4 +1,6 @@
 import cv2
+import logging as log
+import time
 import numpy as np
 from openvino.inference_engine import IECore
 
@@ -34,7 +36,11 @@ class FacialLandmarksDetection:
         if not self.extensions == None:
             self.core.add_extension(self.extensions, self.device)
         # Load model
+        log.info("Loading Facial Landmarks Detection model...")
+        start_time = time.time()
         self.network = self.core.load_network(network=self.model, device_name=self.device, num_requests=1)
+        finish_time = time.time()
+        log.info("Facial Landmarks Detection model took {} seconds to load.".format(finish_time - start_time))
         # Get Input shape
         self.input_name = next(iter(self.model.inputs))
         self.input_shape = self.model.inputs[self.input_name].shape
@@ -79,7 +85,7 @@ class FacialLandmarksDetection:
         coordinates = coordinates* np.array([image_width, image_height, image_width, image_height])
         coordinates = coordinates.astype(np.int32)
 
-        cropped_size = 15
+        cropped_size = 12
         # Return left and right eye images
         return (
             image[(coordinates[1] - cropped_size):(coordinates[1] + cropped_size), (coordinates[0] - cropped_size):(coordinates[0] + cropped_size)], 

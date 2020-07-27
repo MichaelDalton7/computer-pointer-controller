@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+import logging as log
+import time
 from openvino.inference_engine import IECore
 
 '''
@@ -34,7 +36,11 @@ class HeadPoseEstimation:
         if not self.extensions == None:
             self.core.add_extension(self.extensions, self.device)
         # Load model
+        log.info("Loading Head Pose Estimation model...")
+        start_time = time.time()
         self.network = self.core.load_network(network=self.model, device_name=self.device, num_requests=1)
+        finish_time = time.time()
+        log.info("Head Pose Estimation model took {} seconds to load.".format(finish_time - start_time))
         # Get Input shape
         self.input_name = next(iter(self.model.inputs))
         self.input_shape = self.model.inputs[self.input_name].shape

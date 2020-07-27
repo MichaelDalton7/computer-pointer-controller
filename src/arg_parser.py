@@ -16,13 +16,18 @@ prob_desc = '''The probability threshold to be used to separate inference result
                ones that are incorrect. This should be a floating point value between 0 and 1. 
                The default value is 0.6'''
 ext_desc = '''A path to an extension to be used by OpenVino'''
+mui_desc = '''The number of frames between each mouse update. The default value is 5.'''
+show_detected_face_desc = ''' '''
+show_facial_landmarks_desc = ''' '''
+show_head_pose_desc = ''' '''
+show_gaze_estimation_desc = ''' '''
 
 class ArgParser:
     def __init__(self):
         '''
         Constructor for the ArgParser class
         '''
-        self.parser = ArgumentParser("Run inference on an input or video stream to controller the mouse with eye gaze")
+        self.parser = ArgumentParser("Run inference on an input or video stream to control the devices mouse with eye gaze")
 
         # Add parser groups
         self.parser._action_groups.pop()
@@ -38,8 +43,13 @@ class ArgParser:
         # Optional Arguments
         self.optional.add_argument("-i", "--input", required=False, type=str, help=i_desc)
         self.optional.add_argument("-d", "--device", required=False, type=str, default="CPU", help=d_desc)
-        self.optional.add_argument("-prob", "--probability-threshold", required=False, type=float, default=0.6, help=prob_desc)
+        self.optional.add_argument("-pr", "--probability-threshold", required=False, type=float, default=0.6, help=prob_desc)
         self.optional.add_argument("-ext", "--extensions", required=False, type=str, default=None, help=ext_desc)
+        self.optional.add_argument("-mui", "--mouse-update-interval", required=False, type=int, default=5, help=mui_desc)
+        self.optional.add_argument("--show-detected-face", required=False, type=bool, default=False, help=show_detected_face_desc)
+        self.optional.add_argument("--show-facial-landmarks", required=False, type=bool, default=False, help=show_facial_landmarks_desc)
+        self.optional.add_argument("--show-head-pose", required=False, type=bool, default=False, help=show_head_pose_desc)
+        self.optional.add_argument("--show-gaze-estimation", required=False, type=bool, default=False, help=show_gaze_estimation_desc)
     
     def get_args(self):
         '''
