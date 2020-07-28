@@ -17,10 +17,10 @@ prob_desc = '''The probability threshold to be used to separate inference result
                The default value is 0.6'''
 ext_desc = '''A path to an extension to be used by OpenVino'''
 mui_desc = '''The number of frames between each mouse update. The default value is 5.'''
-show_detected_face_desc = ''' '''
-show_facial_landmarks_desc = ''' '''
-show_head_pose_desc = ''' '''
-show_gaze_estimation_desc = ''' '''
+show_detected_face_desc = '''Show a visual representation of the output from the face detection model.'''
+show_facial_landmarks_desc = '''Show a visual representation of the output from the facial landmarks detection model.'''
+show_head_pose_desc = '''Show a visual representation of the output from the head pose estimation model.'''
+show_gaze_estimation_desc = '''Show a visual representation of the output from the gaze estimation model.'''
 
 class ArgParser:
     def __init__(self):
