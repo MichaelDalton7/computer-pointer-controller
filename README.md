@@ -84,13 +84,21 @@ python3 /opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader/dow
 ## Demo
 Once you have successfully setup the project you will be able to run the application on a demo video by using the commands below.
 
-Firstly from the projects base directory cd into the src directory using the command
+Firstly from the projects base directory, in your terminal, cd into the src directory using the command
 
 ```
 cd src/
 ```
 
-Assuming you have downloaded the OpenVino models into the project using the commands above you can the run the command below to start the application
+Next you need to ensure OpenVino has been sourced in your terminal using the command:
+
+```
+source /opt/intel/openvino/bin/setupvars.sh
+```
+
+Note: you will need to run this command everytime you open a new terminal
+
+Assuming you have downloaded the OpenVino models into the projects model directory, installed the applications dependencies onto your virtual environment and sourced OpenVino in your terminal, then you can the run the command below to start the application
 
 ```
 python main.py -fm ./models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/intel/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001 --input ../bin/demo.mp4
