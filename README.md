@@ -5,7 +5,7 @@
 ## Project Set Up and Installation
 
 ### Step 1. Install and configure OpenVINO
-This project uses the OpenVINO toolkit. You will need to install it to run the application. To do this you can follow the instructions [here](https://software.intel.com/en-us/openvino-toolkit/choose-download).
+This project uses the OpenVINO toolkit. You will need to install and set it up correctly to run the application. To do this you can follow the instructions [here](https://docs.openvinotoolkit.org/latest/index.html) and you can [download OpenVino here](https://software.intel.com/en-us/openvino-toolkit/choose-download).
 
 Note: This project was developed using OpenVINO version 2020.4.287
 
