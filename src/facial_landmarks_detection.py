@@ -70,24 +70,36 @@ class FacialLandmarksDetection:
         Before feeding the output of this model to the next model,
         you might have to preprocess the output. This function is where you can do that.
         '''
+        image_height = image.shape[0]
+        image_width = image.shape[1]
+
         detections = outputs[self.output_name][0]
-        
+                
         left_eye_x = detections[0][0][0]
         left_eye_y = detections[1][0][0]
         right_eye_x = detections[2][0][0]
         right_eye_y = detections[3][0][0]
-        
-        coordinates = (left_eye_x, left_eye_y, right_eye_x, right_eye_y)
 
-        image_height = image.shape[0]
-        image_width = image.shape[1]
-        
-        coordinates = coordinates* np.array([image_width, image_height, image_width, image_height])
-        coordinates = coordinates.astype(np.int32)
+        cropped_size = 10
+        left_eye_x_min = int(left_eye_x * image_width) - cropped_size
+        left_eye_y_min = int(left_eye_y * image_height) - cropped_size
+        left_eye_x_max = int(left_eye_x * image_width) + cropped_size
+        left_eye_y_max = int(left_eye_y * image_height) + cropped_size
 
-        cropped_size = 12
+        right_eye_x_min = int(right_eye_x * image_width) - cropped_size
+        right_eye_y_min = int(right_eye_y * image_height) - cropped_size
+        right_eye_x_max = int(right_eye_x * image_width) + cropped_size
+        right_eye_y_max = int(right_eye_y * image_height) + cropped_size
+        
+        left_eye_crop_coordinates = (left_eye_x_min, left_eye_y_min, left_eye_x_max, left_eye_y_max)
+        right_eye_crop_coordinates = (right_eye_x_min, right_eye_y_min, right_eye_x_max, right_eye_y_max)
+
         # Return left and right eye images
         return (
-            image[(coordinates[1] - cropped_size):(coordinates[1] + cropped_size), (coordinates[0] - cropped_size):(coordinates[0] + cropped_size)], 
-            image[(coordinates[3] - cropped_size):(coordinates[3] + cropped_size), (coordinates[2] - cropped_size):(coordinates[2] + cropped_size)]
+            (left_eye_x, left_eye_y),
+            (right_eye_x, right_eye_y),
+            image[left_eye_y_min:left_eye_y_max, left_eye_x_min:left_eye_x_max], 
+            image[right_eye_y_min:right_eye_y_max, right_eye_x_min:right_eye_x_max],
+            left_eye_crop_coordinates,
+            right_eye_crop_coordinates,
         )

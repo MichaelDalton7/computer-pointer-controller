@@ -48,18 +48,18 @@ class GazeEstimation:
         # Get Output name
         self.output_name = [i for i in self.model.outputs.keys()]
 
-    def predict(self,  left_eye_image, right_eye_image, head_pose_angle):
+    def predict(self,  left_eye_image, right_eye_image, head_pose_angles):
         '''
         You will need to complete this method.
         This method is meant for running predictions on the input image.
         '''
         processed_left_eye_image, processed_right_eye_image = self.preprocess_input(left_eye_image.copy(), right_eye_image.copy())
         outputs = self.network.infer({
-            'head_pose_angles' : head_pose_angle, 
+            'head_pose_angles' : head_pose_angles, 
             'left_eye_image' : processed_left_eye_image, 
             'right_eye_image' : processed_right_eye_image
         })
-        return self.preprocess_output(outputs, head_pose_angle)
+        return self.preprocess_output(outputs, head_pose_angles)
 
     def preprocess_input(self, left_eye_image, right_eye_image):
         '''
@@ -72,14 +72,14 @@ class GazeEstimation:
         processed_right_eye_image = np.transpose(np.expand_dims(processed_right_eye_image, axis=0), (0, 3, 1, 2))
         return processed_left_eye_image, processed_right_eye_image
 
-    def preprocess_output(self, outputs, head_pose_angle):
+    def preprocess_output(self, outputs, head_pose_angles):
         '''
         Before feeding the output of this model to the next model,
         you might have to preprocess the output. This function is where you can do that.
         '''
-        angle_r_fc = head_pose_angle[2]
-        cosine = math.cos(angle_r_fc * math.pi / 180.0)
-        sine = math.sin(angle_r_fc * math.pi / 180.0)
+        roll_angle = head_pose_angles[2]
+        cosine = math.cos(roll_angle * math.pi / 180.0)
+        sine = math.sin(roll_angle * math.pi / 180.0)
         gaze_vector = outputs[self.output_name[0]][0]
         
         x_movement = gaze_vector[0] * cosine + gaze_vector[1] * sine
