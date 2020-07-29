@@ -205,8 +205,106 @@ Optional arguments:
 
 ```
 
+### Output Visualisation Command Line Arguments
+
+If you want to see a visual representation of the output from each model you can use the command line arguments below when running the application.
+
+Face Detection Model
+```
+ --show-detected-face True
+```
+
+Facial Landmarks Model
+```
+--show-facial-landmarks True
+```
+
+Head Pose Estimation Model
+```
+--show-head-pose True
+```
+
+Gaze Estimation Model
+```
+--show-gaze-estimation True
+```
+
+Note: Each of these arguments will open a new window and display the output of their associated model
+
 ## Benchmarks
-*TODO:* Include the benchmark results of running your model on multiple hardwares and multiple model precisions. Your benchmarks can include: model loading time, input/output processing time, model inference time etc.
+
+The benchmarks were performed on a Macbook Pro 2017 model which is equipped with
+
+- Intel Core i7 2.8 GHz Quad-Core 
+- 16 GB Ram
+
+Benchmark tests were performed on the model precisions FP32, FP16 and INT8
+
+The logs for the benchmark tests can be found in the file 
+[benchmark_tests.log](./src/benchmark_tests.log)
+
+The tests were ran on the file [demo.mp4](./bin/demo.mp4)
+
+### FP32 Results
+
+Face Detection model load time: 0.16178107261657715 seconds
+
+Facial Landmarks Detection model load time: 0.10812187194824219 seconds
+
+Gaze Estimation model load time: 0.09879016876220703 seconds
+
+Head Pose Estimation model load time: 0.07876825332641602 seconds
+
+Average face detection inference time: 0.015469417733661199 seconds
+
+Average facial landmark detection inference time: 0.0009390257172665354 seconds
+
+Average head pose estimation inference time: 0.0017791804620775125 
+seconds
+
+Average gaze estimation inference time: 0.002139071286734888 seconds
+
+Average total inference time: 0.020326695199740136 seconds
+
+### FP16 Results
+
+Face Detection model load time: 0.16927480697631836 seconds
+
+Facial Landmarks Detection model load time: 0.10882282257080078 seconds
+
+Gaze Estimation model load time: 0.10789990425109863 seconds
+
+Head Pose Estimation model load time: 0.09541606903076172 seconds
+
+Average face detection inference time: 0.015405545800419177 seconds
+
+Average facial landmark detection inference time: 0.0009484897225590076 seconds
+
+Average head pose estimation inference time: 0.0017729088411492816 seconds
+
+Average gaze estimation inference time: 0.00214411040483895 seconds
+
+Average total inference time: 0.020271054768966415 seconds
+
+### INT8 Results
+
+Face Detection model load time: 0.15818381309509277 seconds
+
+Facial Landmarks Detection model load time: 0.14136004447937012 seconds
+
+Gaze Estimation model load time: 0.21371102333068848 seconds
+
+Head Pose Estimation model load time 0.16801810264587402 seconds
+
+Average face detection inference time: 0.01554843530816547 seconds
+
+Average facial landmark detection inference time: 0.0009852142657263805 seconds
+
+Average head pose estimation inference time: 0.0015183545775332692 seconds
+
+Average gaze estimation inference time: 0.0015528444516456734 seconds
+
+Average total inference time: 0.019604848603070792 seconds
 
 ## Results
 *TODO:* Discuss the benchmark results and explain why you are getting the results you are getting. For instance, explain why there is difference in inference time for FP32, FP16 and INT8 models.

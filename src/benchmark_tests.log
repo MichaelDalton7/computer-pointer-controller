@@ -1,0 +1,89 @@
+FP32
+
+INFO:root:----------------Application Started 11:53:29 29-07-2020 ------------------
+INFO:root:Loading Face Detection model...
+INFO:root:Face Detection model took 0.16178107261657715 seconds to load.
+INFO:root:Loading Facial Landmarks Detection model...
+INFO:root:Facial Landmarks Detection model took 0.10812187194824219 seconds to load.
+INFO:root:Loading Gaze Estimation model...
+INFO:root:Gaze Estimation model took 0.09879016876220703 seconds to load.
+INFO:root:Loading Head Pose Estimation model...
+INFO:root:Head Pose Estimation model took 0.07876825332641602 seconds to load.
+INFO:root:Mouse controller new coordinates: x = 0.12344090859772838, y = 0.2715746585825801
+INFO:root:Mouse controller new coordinates: x = -0.37617425345715416, y = -0.2844797996188989
+INFO:root:Mouse controller new coordinates: x = 0.45068232690672466, y = -0.20827048374812088
+INFO:root:Mouse controller new coordinates: x = 0.6280491511372205, y = 0.05869510543071815
+INFO:root:Mouse controller new coordinates: x = -0.35269859297105544, y = 0.02173994901536888
+INFO:root:Mouse controller new coordinates: x = 0.02265403494509132, y = 0.04596925492383402
+INFO:root:Mouse controller new coordinates: x = 0.4924907387791239, y = 0.12281683861077888
+INFO:root:Mouse controller new coordinates: x = 0.6434884410747815, y = 0.13854463900249056
+INFO:root:Mouse controller new coordinates: x = 0.559893806075181, y = -0.15606941414016956
+INFO:root:Mouse controller new coordinates: x = 0.013135543432196603, y = -0.19650712416229119
+INFO:root:Mouse controller new coordinates: x = 0.7644650465587151, y = 0.05747787339657736
+ERROR:root:ret variable not found
+INFO:root:Average face detection inference time: 0.015469417733661199 seconds
+INFO:root:Average facial landmark detection inference time: 0.0009390257172665354 seconds
+INFO:root:Average head pose estimation inference time: 0.0017791804620775125 seconds
+INFO:root:Average gaze estimation inference time: 0.002139071286734888 seconds
+INFO:root:Average total inference time: 0.020326695199740136 seconds
+INFO:root:----------------Application Finished-----------------
+
+FP16
+
+INFO:root:----------------Application Started 12:13:02 29-07-2020 ------------------
+INFO:root:Loading Face Detection model...
+INFO:root:Face Detection model took 0.16927480697631836 seconds to load.
+INFO:root:Loading Facial Landmarks Detection model...
+INFO:root:Facial Landmarks Detection model took 0.10882282257080078 seconds to load.
+INFO:root:Loading Gaze Estimation model...
+INFO:root:Gaze Estimation model took 0.10789990425109863 seconds to load.
+INFO:root:Loading Head Pose Estimation model...
+INFO:root:Head Pose Estimation model took 0.09541606903076172 seconds to load.
+INFO:root:Mouse controller new coordinates: x = 0.12371672519190183, y = 0.27161071334620024
+INFO:root:Mouse controller new coordinates: x = -0.376858338068399, y = -0.2843080161802827
+INFO:root:Mouse controller new coordinates: x = 0.4507334019927515, y = -0.20834904105541543
+INFO:root:Mouse controller new coordinates: x = 0.6280089532109953, y = 0.05848872114072797
+INFO:root:Mouse controller new coordinates: x = -0.35273124108426246, y = 0.02181963036766295
+INFO:root:Mouse controller new coordinates: x = 0.02332605657217699, y = 0.04564512298666648
+INFO:root:Mouse controller new coordinates: x = 0.4925022310758697, y = 0.12250414391005843
+INFO:root:Mouse controller new coordinates: x = 0.643587076949095, y = 0.13836649358331465
+INFO:root:Mouse controller new coordinates: x = 0.5598652788660046, y = -0.1563536756595304
+INFO:root:Mouse controller new coordinates: x = 0.013212303220202308, y = -0.1966641059206016
+INFO:root:Mouse controller new coordinates: x = 0.7646676431939677, y = 0.05745331157877524
+ERROR:root:ret variable not found
+INFO:root:Average face detection inference time: 0.015405545800419177 seconds
+INFO:root:Average facial landmark detection inference time: 0.0009484897225590076 seconds
+INFO:root:Average head pose estimation inference time: 0.0017729088411492816 seconds
+INFO:root:Average gaze estimation inference time: 0.00214411040483895 seconds
+INFO:root:Average total inference time: 0.020271054768966415 seconds
+INFO:root:----------------Application Finished-----------------
+
+INT8
+
+INFO:root:----------------Application Started 12:20:11 29-07-2020 ------------------
+INFO:root:Loading Face Detection model...
+INFO:root:Face Detection model took 0.15818381309509277 seconds to load.
+INFO:root:Loading Facial Landmarks Detection model...
+INFO:root:Facial Landmarks Detection model took 0.14136004447937012 seconds to load.
+INFO:root:Loading Gaze Estimation model...
+INFO:root:Gaze Estimation model took 0.21371102333068848 seconds to load.
+INFO:root:Loading Head Pose Estimation model...
+INFO:root:Head Pose Estimation model took 0.16801810264587402 seconds to load.
+INFO:root:Mouse controller new coordinates: x = 0.15676755175274715, y = 0.26128577675291625
+INFO:root:Mouse controller new coordinates: x = -0.36447377812676884, y = -0.2988024552304799
+INFO:root:Mouse controller new coordinates: x = 0.27627427327433457, y = -0.2375644483618772
+INFO:root:Mouse controller new coordinates: x = 0.5966617080568236, y = 0.05180789326201775
+INFO:root:Mouse controller new coordinates: x = -0.3748880727932018, y = -0.028594295818096457
+INFO:root:Mouse controller new coordinates: x = 0.20869795330489635, y = -0.03720221397772849
+INFO:root:Mouse controller new coordinates: x = 0.5055494099854612, y = 0.16292629054198102
+INFO:root:Mouse controller new coordinates: x = 0.6306176674903461, y = 0.10296388447934873
+INFO:root:Mouse controller new coordinates: x = 0.5291605923988416, y = -0.14573904107821886
+INFO:root:Mouse controller new coordinates: x = -0.08601787042677349, y = -0.24278183862404962
+INFO:root:Mouse controller new coordinates: x = 0.7397757202293206, y = 0.11670466065693041
+ERROR:root:ret variable not found
+INFO:root:Average face detection inference time: 0.01554843530816547 seconds
+INFO:root:Average facial landmark detection inference time: 0.0009852142657263805 seconds
+INFO:root:Average head pose estimation inference time: 0.0015183545775332692 seconds
+INFO:root:Average gaze estimation inference time: 0.0015528444516456734 seconds
+INFO:root:Average total inference time: 0.019604848603070792 seconds
+INFO:root:----------------Application Finished-----------------
