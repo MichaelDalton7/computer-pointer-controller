@@ -22,6 +22,12 @@ show_facial_landmarks_desc = '''Show a visual representation of the output from 
 show_head_pose_desc = '''Show a visual representation of the output from the head pose estimation model.'''
 show_gaze_estimation_desc = '''Show a visual representation of the output from the gaze estimation model.'''
 
+
+default_face_detecion_model_path = "./models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001"
+default_facial_landmarks_model_path = "./models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009"
+default_head_pose_model_path = "./models/intel/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001"
+default_gaze_estimation_model_path = "./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002"
+
 class ArgParser:
     def __init__(self):
         '''
@@ -35,13 +41,14 @@ class ArgParser:
         self.optional = self.parser.add_argument_group('Optional arguments')
 
         # Required Arguments
-        self.required.add_argument("-fm", "--face-detection-model", required=True, type=str, help=fm_desc)
-        self.required.add_argument("-flm", "--facial-landmark-detection-model", required=True, type=str, help=flm_desc)
-        self.required.add_argument("-gm", "--gaze-estimation-model", required=True, type=str, help=gm_desc)
-        self.required.add_argument("-hpm", "--head-pose-estimation-model", required=True, type=str, help=hpm_desc)
+        # There are currently no required arguments
 
         # Optional Arguments
         self.optional.add_argument("-i", "--input", required=False, type=str, help=i_desc)
+        self.optional.add_argument("-fm", "--face-detection-model", required=False, type=str, default=default_face_detecion_model_path, help=fm_desc)
+        self.optional.add_argument("-flm", "--facial-landmark-detection-model", required=False, type=str, default=default_facial_landmarks_model_path, help=flm_desc)
+        self.optional.add_argument("-gm", "--gaze-estimation-model", required=False, type=str, default=default_gaze_estimation_model_path, help=gm_desc)
+        self.optional.add_argument("-hpm", "--head-pose-estimation-model", required=False, type=str, default=default_head_pose_model_path, help=hpm_desc)
         self.optional.add_argument("-d", "--device", required=False, type=str, default="CPU", help=d_desc)
         self.optional.add_argument("-pr", "--probability-threshold", required=False, type=float, default=0.6, help=prob_desc)
         self.optional.add_argument("-ext", "--extensions", required=False, type=str, default=None, help=ext_desc)

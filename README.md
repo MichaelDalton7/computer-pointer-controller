@@ -1,6 +1,14 @@
 # Computer Pointer Controller
 
-*TODO:* Write a short introduction to your project
+This project was designed to allow a user to control the movement of their computers mouse pointer using their head position and gaze. The project uses the [Gaze Estimation](https://docs.openvinotoolkit.org/latest/omz_models_intel_gaze_estimation_adas_0002_description_gaze_estimation_adas_0002.html) model, among a number of other models, to estimate the gaze of the user's eyes and change the mouse pointer position accordingly.
+
+It also uses the InferenceEngine API from Intel's OpenVino ToolKit to run inference on models.
+
+While running, the application coordinates the flow of data from the input, and then amongst the different models used and then finally to the mouse controller, as can be seen below. 
+
+![Project Pipeline Image](./project_pipeline.png)
+
+It also allows for multiple forms of input. A user can specify a video file they want to use as input or, if they don't specify any input, the application will try to use input from the devices camera.
 
 ## Project Set Up and Installation
 
@@ -16,7 +24,7 @@ Once the repository has been downloaded, open a terminal and cd into its base di
 
 The downloaded repository should have a similar structure to the image below minus the directories "pychache" and "myenv" which will be added in laters steps
 
-![alt text](./project_structure.png)
+![Project Structure Image](./project_structure.png)
 
 ### Step 3. Create a Python Virtual Environment
 
@@ -98,23 +106,37 @@ source /opt/intel/openvino/bin/setupvars.sh
 
 Note: you will need to run this command everytime you open a new terminal
 
-Assuming you have downloaded the OpenVino models into the projects model directory, installed the applications dependencies onto your virtual environment and sourced OpenVino in your terminal, then you can the run the command below to start the application
+Assuming you have downloaded the OpenVino models into the projects "models" directory, installed the applications dependencies onto your virtual environment and sourced OpenVino in your terminal, then you can the run the command below to start the application
 
 ```
-python main.py -fm ./models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/intel/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001 --input ../bin/demo.mp4
+python main.py -i ../bin/demo.mp4
 ```
 
 If you want to run the application using input from your devices camera you can use the command:
 
 ```
-python main.py -fm ./models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 -flm ./models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009 -gm ./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002 -hpm ./models/intel/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001
+python main.py
 ```
+
+Note: if you want to manually specify the model directories through command line arguments, then enter the path right up to the file name but leave out the files extension e.g.
+```
+--gaze-estimation-model ./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002
+```
+
+The above command line argument will search for the gaze estimation model in the __./models/intel/gaze-estimation-adas-0002/FP32/__ directory and expects to find the files __gaze-estimation-adas-0002.bin__ and __gaze-estimation-adas-0002.xml__ in this directory
 
 ## Documentation
-*TODO:* Include any documentation that users might need to better understand your project code. For instance, this is a good place to explain the command line arguments that your project supports.
+
+Tthe application supports a number of command line arguments, all of which can be seen below.
 
 ```
-Required arguments:
+Optional arguments:
+  -i or --input
+
+      The path to the input video file. If no input file
+      path is specified then the application will try to use
+      the video camera.
+
   -fm or --face-detection-model
   
       The path to the face detection model and it's weights
@@ -140,14 +162,6 @@ Required arguments:
       weights file (.xml and .bin files). This path should
       include the model name but not the file extension
 
-
-Optional arguments:
-  -i or --input
-
-      The path to the input video file. If no input file
-      path is specified then the application will try to use
-      the video camera.
-
   -d or --device
 
       The device type that inference should be run on. If
@@ -166,28 +180,28 @@ Optional arguments:
 
   -mui or --mouse-update-interval
 
-      The number of frames between each mouse update. The
-      default value is 5.
+      The number of frames between each mouse update. 
+      The default value is 5.
 
   --show-detected-face
 
-      Show a visual representation of the output from the
-      face detection model.
+      Show a visual representation of the output from 
+      the face detection model.
 
   --show-facial-landmarks
 
-      Show a visual representation of the output from the
-      facial landmarks detection model.
+      Show a visual representation of the output from 
+      the facial landmarks detection model.
 
   --show-head-pose SHOW_HEAD_POSE
 
-      Show a visual representation of the output from the
-      head pose estimation model.
+      Show a visual representation of the output from 
+      the head pose estimation model.
 
   --show-gaze-estimation SHOW_GAZE_ESTIMATION
 
-      Show a visual representation of the output from the
-      gaze estimation model.
+      Show a visual representation of the output from 
+      the gaze estimation model.
 
 ```
 
