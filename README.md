@@ -26,6 +26,10 @@ The downloaded repository should have a similar structure to the image below min
 
 ![Project Structure Image](./images/project_structure.png)
 
+The "src" directory contains all the python files that the application uses. To start the application you will need to run the file [main.py](./src/main.py) in this directory. 
+
+The OpenVino models are stored in the "src/models" directory and a demo video that can be used for the applications input can be found in the "bin" directory.
+
 ### Step 3. Create a Python Virtual Environment
 
 Next you will need to create a virtual envrironment. You can do this with the below command:
