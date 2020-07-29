@@ -4,16 +4,16 @@ This project was designed to allow a user to control the movement of their compu
 
 It also uses the InferenceEngine API from Intel's OpenVino ToolKit to run inference on models.
 
-While running, the application coordinates the flow of data from the input, and then amongst the different models used and then finally to the mouse controller, as can be seen below. 
+The application coordinates the flow of data from its input, and then amongst the different models used and then finally to the mouse controller, as can be seen in the image below. 
 
-![Project Pipeline Image](./project_pipeline.png)
+![Project Pipeline Image](./images/project_pipeline.png)
 
-It also allows for multiple forms of input. A user can specify a video file they want to use as input or, if they don't specify any input, the application will try to use input from the devices camera.
+The application also allows for multiple forms of input. A user can specify a video file they want to use as input or if they don't specify any input the application will try to use input from the devices camera.
 
 ## Project Set Up and Installation
 
 ### Step 1. Install and configure OpenVINO
-This project uses the OpenVINO toolkit. You will need to install and set it up correctly to run the application. To do this you can follow the instructions [here](https://docs.openvinotoolkit.org/latest/index.html) and you can [download OpenVino here](https://software.intel.com/en-us/openvino-toolkit/choose-download).
+This project uses the OpenVINO toolkit. You will need to install it and set it up correctly to run the application. To do this you can follow the instructions [here](https://docs.openvinotoolkit.org/latest/index.html) and you can [download OpenVino here](https://software.intel.com/en-us/openvino-toolkit/choose-download).
 
 Note: This project was developed using OpenVINO version 2020.4.287
 
@@ -24,7 +24,7 @@ Once the repository has been downloaded, open a terminal and cd into its base di
 
 The downloaded repository should have a similar structure to the image below minus the directories "pychache" and "myenv" which will be added in laters steps
 
-![Project Structure Image](./project_structure.png)
+![Project Structure Image](./images/project_structure.png)
 
 ### Step 3. Create a Python Virtual Environment
 
@@ -34,17 +34,17 @@ Next you will need to create a virtual envrironment. You can do this with the be
 python3 -m venv {ENVIRONMENT_NAME}
 ```
 
-Once your virtual environment is created activate by running the command below:
+Once your virtual environment has been created activate it by running the command below:
 
 ```
 source {ENVIRONMENT_NAME}/bin/activate
 ```
 
-### Step 4. Install the projects dependencies on the virtual environment
+### Step 4. Install the projects dependencies in the virtual environment
 
 Once you have activated your virtual environment you will need to install all of the projects dependencies on this environment to run the application. 
 
-To do this first you need to open the projects base directory in your terminal. This directory should contain a file call "requirements.txt". When you have opened this directory in your terminal run the command below:
+To do this, first you need to open the projects base directory in your terminal. This directory should contain a file called "requirements.txt". When you have opened this directory in your terminal run the command below:
 
 ```
 pip3 install -r requirements.txt
@@ -54,7 +54,7 @@ Wait for all the dependencies to install and then move onto the next step.
 
 ### Step 5. Download the OpenVino Zoo Models
 
-Next you need to download the 4 models required to run the application. 
+Next you will need to download the 4 models required to run the application. 
 
  - [Face Detection Model](https://docs.openvinotoolkit.org/latest/omz_models_intel_face_detection_adas_binary_0001_description_face_detection_adas_binary_0001.html)
 - [Facial Landmark Detection Model](https://docs.openvinotoolkit.org/latest/omz_models_intel_landmarks_regression_retail_0009_description_landmarks_regression_retail_0009.html)
@@ -118,12 +118,12 @@ If you want to run the application using input from your devices camera you can 
 python main.py
 ```
 
-Note: if you want to manually specify the model directories through command line arguments, then enter the path right up to the file name but leave out the files extension e.g.
+Note: if you want to manually specify the model directories through command line arguments, then enter the models path, including the file name, but leave out the file extension e.g.
 ```
 --gaze-estimation-model ./models/intel/gaze-estimation-adas-0002/FP32/gaze-estimation-adas-0002
 ```
 
-The above command line argument will search for the gaze estimation model in the __./models/intel/gaze-estimation-adas-0002/FP32/__ directory and expects to find the files __gaze-estimation-adas-0002.bin__ and __gaze-estimation-adas-0002.xml__ in this directory
+The above command line argument will get the application to search for the gaze estimation model in the __./models/intel/gaze-estimation-adas-0002/FP32/__ directory. The application expects to find the files __gaze-estimation-adas-0002.bin__ and __gaze-estimation-adas-0002.xml__ in this directory
 
 ## Documentation
 
@@ -233,17 +233,19 @@ Note: Each of these arguments will open a new window and display the output of t
 
 ## Benchmarks
 
-The benchmarks were performed on a Macbook Pro 2017 model which is equipped with
+The benchmark tests were performed on a Macbook Pro 2017 model which was equipped with
 
 - Intel Core i7 2.8 GHz Quad-Core 
 - 16 GB Ram
 
-Benchmark tests were performed on the model precisions FP32, FP16 and INT8
+Tests were performed on the model precisions FP32, FP16 and INT8
 
 The logs for the benchmark tests can be found in the file 
 [benchmark_tests.log](./src/benchmark_tests.log)
 
-The tests were ran on the file [demo.mp4](./bin/demo.mp4)
+The tests used the video file [./bin/demo.mp4](./bin/demo.mp4) for input.
+
+## Results
 
 ### FP32 Results
 
@@ -251,9 +253,11 @@ Face Detection model load time: 0.16178107261657715 seconds
 
 Facial Landmarks Detection model load time: 0.10812187194824219 seconds
 
+Head Pose Estimation model load time: 0.07876825332641602 seconds
+
 Gaze Estimation model load time: 0.09879016876220703 seconds
 
-Head Pose Estimation model load time: 0.07876825332641602 seconds
+![FP32 Model Load Times](./images/FP32_Model_Load_Times.png)
 
 Average face detection inference time: 0.015469417733661199 seconds
 
@@ -264,6 +268,8 @@ seconds
 
 Average gaze estimation inference time: 0.002139071286734888 seconds
 
+![FP32 Model Inference Times](./images/FP32_Model_Inference_Times.png)
+
 Average total inference time: 0.020326695199740136 seconds
 
 ### FP16 Results
@@ -272,9 +278,11 @@ Face Detection model load time: 0.16927480697631836 seconds
 
 Facial Landmarks Detection model load time: 0.10882282257080078 seconds
 
+Head Pose Estimation model load time: 0.09541606903076172 seconds
+
 Gaze Estimation model load time: 0.10789990425109863 seconds
 
-Head Pose Estimation model load time: 0.09541606903076172 seconds
+![FP16 Model Load Times](./images/FP16_Model_Load_Times.png)
 
 Average face detection inference time: 0.015405545800419177 seconds
 
@@ -284,6 +292,8 @@ Average head pose estimation inference time: 0.0017729088411492816 seconds
 
 Average gaze estimation inference time: 0.00214411040483895 seconds
 
+![FP16 Model Inference Times](./images/FP16_Model_Inference_Times.png)
+
 Average total inference time: 0.020271054768966415 seconds
 
 ### INT8 Results
@@ -292,9 +302,11 @@ Face Detection model load time: 0.15818381309509277 seconds
 
 Facial Landmarks Detection model load time: 0.14136004447937012 seconds
 
+Head Pose Estimation model load time 0.16801810264587402 seconds
+
 Gaze Estimation model load time: 0.21371102333068848 seconds
 
-Head Pose Estimation model load time 0.16801810264587402 seconds
+![INT8 Model Load Times](./images/INT8_Model_Load_Times.png)
 
 Average face detection inference time: 0.01554843530816547 seconds
 
@@ -304,7 +316,19 @@ Average head pose estimation inference time: 0.0015183545775332692 seconds
 
 Average gaze estimation inference time: 0.0015528444516456734 seconds
 
+![INT8 Model Inference Times](./images/INT8_Model_Inference_Times.png)
+
 Average total inference time: 0.019604848603070792 seconds
 
-## Results
-*TODO:* Discuss the benchmark results and explain why you are getting the results you are getting. For instance, explain why there is difference in inference time for FP32, FP16 and INT8 models.
+### Conclusion 
+It can be seen from the results that one of the main issues with the application is that it is being slowed down by the inference speed of the face detection model. This model also only came with FP32 precision so we couldn't sacrifice accuracy for speed here by dropping down precision. 
+This is disappointing as we seen we could speed up inference on the Head Pose Estimation and the Gaze Estimation models by dropping the precision of the models we used.
+
+![Average Head Pose Estimation Inference Time Bar Chart](./images/average_head_pose_inference_time.png)
+
+![Average Gaze Estimation Inference Time Bar Chart](./images/average_gaze_estimation_inference_time.png)
+
+In the future, to improve the applications overall performance, I would try to find a better face detection model.
+
+I also found, at least for the demo video, that running the application on lower precision models such as FP16 or INT8, didn't affect the accuracy of the application all that much. This means we can run the application with FP16 models on GPUs and hardware accelerators like VPUs without worrying about an excessive loss in accuracy.
+
