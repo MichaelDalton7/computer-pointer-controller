@@ -127,7 +127,7 @@ The above command line argument will search for the gaze estimation model in the
 
 ## Documentation
 
-Tthe application supports a number of command line arguments, all of which can be seen below.
+The application supports a number of command line arguments, all of which can be seen below.
 
 ```
 Optional arguments:
