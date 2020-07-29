@@ -44,6 +44,14 @@ Once your virtual environment has been created activate it by running the comman
 source {ENVIRONMENT_NAME}/bin/activate
 ```
 
+Next you need to ensure OpenVino has been sourced in your terminal using the command:
+
+```
+source /opt/intel/openvino/bin/setupvars.sh
+```
+
+Note: You will need to run this command everytime you open a new terminal. If you do not run this command you wont be able to run the application.
+
 ### Step 4. Install the projects dependencies in the virtual environment
 
 Once you have activated your virtual environment you will need to install all of the projects dependencies on this environment to run the application. 
@@ -101,14 +109,6 @@ Firstly from the projects base directory, in your terminal, cd into the src dire
 ```
 cd src/
 ```
-
-Next you need to ensure OpenVino has been sourced in your terminal using the command:
-
-```
-source /opt/intel/openvino/bin/setupvars.sh
-```
-
-Note: you will need to run this command everytime you open a new terminal
 
 Assuming you have downloaded the OpenVino models into the projects "models" directory, installed the applications dependencies onto your virtual environment and sourced OpenVino in your terminal, then you can the run the command below to start the application
 
